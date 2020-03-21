@@ -1,0 +1,18 @@
+.punaagest-contenu {
+  max-height: 780px;
+}
+
+.image-couverture {
+  position: absolute;
+  background: url('./../assets/index.jpg') no-repeat center;
+  background-size: contain;
+  z-index: -1;
+  width: 20%;
+  height: 20%;
+  max-height: 780px;
+}
+
+.contenu-central {
+  height: 500px;
+  flex: 1 1 auto;
+}

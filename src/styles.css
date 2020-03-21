@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 5px;
+  min-width: 690px;
+}
+
+.contenu-flexible {
+  display: flex;
+}
+
+/**
+ * Permet d'occuper l'espace disponible
+ */
+.remplissage-espace-restant {
+  flex: 1 1 auto;
+}
+
+/**
+ * Met un zone de texte en rouge pour expliquer pourquoi un formulaire n'est pas valide
+ */
+.message-validation-erreur {
+  color: #f44336;
+}
+
+/**
+ * Permet d'avoir un bloc qui utilise l'espace disponible entre header et footer
+ */
+.carte-centrale {
+  height: 94%;
+}
+
+/**
+ * Affiche un paginator avec une couleur de fond
+ */
+mat-paginator.paginator-fond-colore {
+  margin-top: 2px;
+  background-color: #e9f0dc;
+}
+
+.entete-detail {
+  width: 140px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+mat-grid-tile .mat-form-field {
+  width: 96%;
+  margin-right: 4%;
+}
+
+/**
+ * Permet d'avoir des champs de saisie qui occupent toute la ligne dans les popup
+ */
+.mat-dialog-content mat-form-field {
+  width: 100%;
+}
