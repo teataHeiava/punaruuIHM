@@ -4,6 +4,8 @@ import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {AuthentificationComponent} from '../../component/authentification/authentification.component';
 import {AuthentificationService} from '../../services/http/authentification.service';
 import {UtilisateurConnecte} from '../../domain/utilisateur-connecte';
+import {SectionService} from '../../services/http/section.service';
+import {Section} from '../../domain/section';
 
 
 @Component({
@@ -13,21 +15,31 @@ import {UtilisateurConnecte} from '../../domain/utilisateur-connecte';
 })
 export class HeaderComponent implements OnInit {
   public utilisateurConnecte: UtilisateurConnecte;
+  public sections: Array<Section> = [];
 
-  constructor(private dialog: MatDialog, private authService: AuthentificationService) {
+  constructor(private dialog: MatDialog, private authService: AuthentificationService,
+              private sectionService: SectionService) {
   }
 
   ngOnInit(): void {
     this.utilisateurConnecte = this.authService.getUtilisateurConnecte();
     this.authService._authenticatedSubject.subscribe(retour => {
       this.utilisateurConnecte = retour;
+
+      if (retour != null) {
+         this.sectionService.listerTous()
+           .then( sections => {
+             this.sections = sections;
+           })
+      }
+
     })
   }
 
   public login(): void {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = false;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     this.dialog.open(AuthentificationComponent, dialogConfig);
   }

@@ -14,16 +14,11 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-  <mat-toolbar *ngIf="utilisateurConnecte">
-    <div>
-      <button mat-button [matMenuTriggerFor]="menu">
-        <span>Section</span>
+  <mat-toolbar *ngIf="utilisateurConnecte" style="text-align: center; display: block ruby" >
+    <div *ngFor="let section of sections">
+      <button mat-button matTooltip="{{section.code}}" style="font-weight: bold">
+        <span>{{section.discipline}}</span>
       </button>
-      <mat-menu #menu="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item routerLink='/'>
-          Lister
-        </button>
-      </mat-menu>
     </div>
   </mat-toolbar>
 </header>

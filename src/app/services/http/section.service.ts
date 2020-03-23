@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class SectionService {
 
 
-  private sessionUrl = 'http://localhost:8080/api/v1/sessions';
+  private sessionUrl = 'http://localhost:8080/api/v1/sections';
   private httpHeader = new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'});
 
   constructor(private http: HttpClient) {

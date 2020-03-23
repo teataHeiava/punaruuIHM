@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {UtilisateurConnecte} from '../../domain/utilisateur-connecte';
+import {promise} from 'selenium-webdriver';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class AuthentificationService {
     return this.http.post(this.sessionUrl, null, {headers: this.httpHeader.set('Authorization', authHeader)}).toPromise();
   }
 
-  public async login(identifiant: String, password: String): number {
+  public async login(identifiant: String, password: String): Promise <number> {
     if (this._authenticatedSubject.value != null) {
       return 0;
     }
@@ -32,7 +33,6 @@ export class AuthentificationService {
     await this.loginAPI(identifiant, password)
       .then(retour => {
         let utilisateurConnecte: UtilisateurConnecte = retour;
-        console.log('retour API', retour);
         sessionStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
         this._authenticatedSubject.next(utilisateurConnecte);
         return 1;
