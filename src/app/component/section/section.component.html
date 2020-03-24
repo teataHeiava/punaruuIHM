@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header *ngIf="section" style="font-weight: bold; text-align: center; display: block" class="mb-2">
+    FICHE DE RENSEIGNEMENT DU {{section.discipline}}</mat-card-header>
+  <form *ngIf="formulaireSection" [formGroup]="formulaireSection">
+    <div class="row" style="text-align: center; display: block ruby">
+      <div class="col-lg-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input matInput required formControlName="nom"/>
+        </mat-form-field>
+      </div>
+
+      <div class="col-lg-2">
+        <mat-form-field appearance="fill">
+          <mat-label>Code</mat-label>
+          <input matInput required formControlName="code"/>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" style="text-align: center; display: block ruby">
+      <div class="col-lg-2">
+        <mat-form-field appearance="fill">
+          <mat-label>Date de validation CATP</mat-label>
+          <input matInput required formControlName="dateValidationCatp" [matDatepicker]="dateValidationCatp"/>
+          <mat-datepicker-toggle matSuffix [for]="dateValidationCatp"></mat-datepicker-toggle>
+          <mat-datepicker #dateValidationCatp></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-2">
+        <mat-form-field appearance="fill">
+          <mat-label>Type de calendrier</mat-label>
+          <input matInput required formControlName="typeCalendrier"/>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-card>

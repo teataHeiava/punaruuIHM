@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {SocialUser} from 'angularx-social-login';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {AuthentificationComponent} from '../../component/authentification/authentification.component';
 import {AuthentificationService} from '../../services/http/authentification.service';
 import {UtilisateurConnecte} from '../../domain/utilisateur-connecte';
 import {SectionService} from '../../services/http/section.service';
 import {Section} from '../../domain/section';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   public sections: Array<Section> = [];
 
   constructor(private dialog: MatDialog, private authService: AuthentificationService,
-              private sectionService: SectionService) {
+              private sectionService: SectionService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,8 +32,11 @@ export class HeaderComponent implements OnInit {
              this.sections = sections;
            })
       }
-
     })
+  }
+
+  public accederFicheSection(discipline: string) {
+    this.router.navigate(['/section/' + discipline]);
   }
 
   public login(): void {

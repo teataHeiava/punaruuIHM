@@ -1,4 +1,4 @@
-<header>
+<header style="background-color: #ffb04a">
   <div style="width: 100%; text-align: center">
     <mat-grid-list [cols]="10" rowHeight="70">
       <mat-grid-tile [colspan]="9" style="text-align: center">
@@ -14,11 +14,27 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
-  <mat-toolbar *ngIf="utilisateurConnecte" style="text-align: center; display: block ruby" >
+
+  <mat-toolbar *ngIf="utilisateurConnecte" style="text-align: center; display: block ruby; background-color:tomato" >
     <div *ngFor="let section of sections">
-      <button mat-button matTooltip="{{section.code}}" style="font-weight: bold">
-        <span>{{section.discipline}}</span>
+
+      <button mat-button matTooltip="{{section.code}}" style="font-weight: bold" [matMenuTriggerFor]="sectionMenu">
+        <span *ngIf="utilisateurConnecte.dirigeant.section.code == section.code" style="color: #1c1c1c">{{section.discipline}}</span>
+        <span *ngIf="utilisateurConnecte.dirigeant.section.code != section.code" style="color: #3d8b40">{{section.discipline}}</span>
       </button>
+
+      <mat-menu #sectionMenu="matMenu">
+        <button mat-menu-item (click)="accederFicheSection(section.discipline)">Fiche d'information {{section.code}}</button>
+        <button *ngIf="utilisateurConnecte.dirigeant.section.code == 'BUR' || utilisateurConnecte.dirigeant.section.code == section.code"
+                mat-menu-item [matMenuTriggerFor]="sectionComptaMenu">Comptabilité</button>
+      </mat-menu>
+
+      <mat-menu #sectionComptaMenu="matMenu">
+        <button mat-menu-item>Depenses</button>
+        <button mat-menu-item>Recettes</button>
+      </mat-menu>
     </div>
   </mat-toolbar>
+
+
 </header>

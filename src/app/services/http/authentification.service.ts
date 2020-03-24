@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {UtilisateurConnecte} from '../../domain/utilisateur-connecte';
-import {promise} from 'selenium-webdriver';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthentificationService {
   private sessionUrl = 'http://localhost:8080/authenticate';
   private httpHeader = new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8'});
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const userCurrent: UtilisateurConnecte = JSON.parse(sessionStorage.getItem('utilisateurConnecte'));
     this._authenticatedSubject.next(userCurrent);
   }
@@ -55,6 +55,7 @@ export class AuthentificationService {
 
   public logout() {
     this._authenticatedSubject.next(null);
+    this.router.navigate(['/']);
     sessionStorage.clear();
   }
 }

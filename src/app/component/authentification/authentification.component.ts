@@ -10,7 +10,6 @@ import {AuthentificationService} from '../../services/http/authentification.serv
 })
 export class AuthentificationComponent implements OnInit {
   public authForm: FormGroup;
-  public isConnecte: boolean = false;
   public cacherMotPasse: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private authentificationService: AuthentificationService,

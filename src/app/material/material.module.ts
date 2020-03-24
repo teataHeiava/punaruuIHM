@@ -18,6 +18,8 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -25,6 +27,7 @@ import {MatButtonModule} from "@angular/material/button";
     CommonModule
   ],
   exports: [
+    MatDatepickerModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -42,7 +45,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

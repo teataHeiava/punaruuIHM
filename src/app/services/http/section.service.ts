@@ -16,4 +16,8 @@ export class SectionService {
   public listerTous(): Promise<any> {
     return this.http.get(this.sessionUrl, {headers: this.httpHeader}).toPromise();
   }
+
+  public trouver(discipline: string): Promise<any> {
+    return this.http.get(this.sessionUrl + '/' + discipline, {headers: this.httpHeader}).toPromise();
+  }
 }

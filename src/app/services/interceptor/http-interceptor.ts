@@ -21,11 +21,7 @@ export class HttpInterceptor implements HttpInterceptor {
   public intercept(requete: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Si un utilisateur est loggé, on ajoute dans l'en-tête son tocken d'accès
 
-    console.log('interceptor', requete);
-
     if (!requete.url.includes(this.authentificationUrl)) {
-      console.log('interceptor in', requete);
-
       const userCurrent: UtilisateurConnecte = JSON.parse(sessionStorage.getItem('utilisateurConnecte'));
       const token = userCurrent.token;
 
@@ -37,7 +33,6 @@ export class HttpInterceptor implements HttpInterceptor {
         });
       }
     }
-    console.log('interceptor avant', requete);
     return next.handle(requete);
   }
 
